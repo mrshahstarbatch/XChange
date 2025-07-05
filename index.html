@@ -3,47 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BookWave – Used Books for NEET & JEE</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>NEET & JEE BookWave</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>📚 BookWave</h1>
-    <p>India’s first community marketplace for NEET & JEE aspirants – 100% free, zero commission, direct contact.</p>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Welcome to <span class="brand">BookWave</span></h1>
+      <p>The dedicated marketplace for <strong>NEET</strong> & <strong>JEE</strong> aspirants to buy and sell books.</p>
+      <p><strong>Zero commission.</strong> Contact sellers directly and buy used books nearby.</p>
+    </div>
   </header>
 
-  <section id="upload-section">
-    <h2>📤 Upload Your Book</h2>
-    <form id="uploadForm">
+  <section class="upload-section">
+    <h2>Sell Your Book</h2>
+    <form id="bookForm">
       <input type="text" id="bookName" placeholder="Book Name" required />
-      <input type="text" id="bookLocation" placeholder="City / Location" required />
-      <select id="bookSubject" required>
-        <option value="">Select Subject</option>
-        <option value="NEET">NEET</option>
-        <option value="JEE">JEE</option>
-      </select>
+      <input type="text" id="sellerLocation" placeholder="Your Location" required />
       <input type="file" id="bookImage" accept="image/*" required />
-      <button type="submit">Upload</button>
+      <button type="submit">Upload Book</button>
     </form>
   </section>
 
-  <section id="book-market">
-    <h2>📚 Available Books</h2>
-
-    <div class="filters">
-      <input type="text" id="searchLocation" placeholder="Search by city or area" />
-      <select id="filterSubject">
-        <option value="all">All Subjects</option>
-        <option value="NEET">NEET</option>
-        <option value="JEE">JEE</option>
-      </select>
+  <section class="book-listings">
+    <h2>Available Books</h2>
+    <div id="bookContainer" class="books-grid">
+      <!-- Book cards will appear here -->
     </div>
-
-    <div id="bookList" class="book-list"></div>
   </section>
 
   <footer>
-    <p>&copy; 2025 BookWave. Built with ❤️ for NEET & JEE aspirants.</p>
+    <p>&copy; 2025 BookWave. Built for NEET & JEE aspirants.</p>
   </footer>
 
   <script src="script.js"></script>
