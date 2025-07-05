@@ -2,61 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BookWave - Buy & Sell Books</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BookWave – Used Books for NEET & JEE</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <header class="navbar">
-    <h1 class="logo">📘 BookWave</h1>
-    <nav>
-      <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#browse">Browse Books</a></li>
-        <li><a href="#sell">Sell Your Book</a></li>
-      </ul>
-    </nav>
+  <header>
+    <h1>📚 BookWave</h1>
+    <p>India’s first community marketplace for NEET & JEE aspirants – 100% free, zero commission, direct contact.</p>
   </header>
 
-  <section class="hero">
-    <h2>Buy, Sell & Save on Books 📚</h2>
-    <p>The smartest way to exchange knowledge and make money. Products listed at 40% of MRP. We only take 10% commission!</p>
-    <button onclick="alert('Feature Coming Soon!')">Get Started</button>
-  </section>
-
-  <section id="features" class="section-container">
-    <h2>🚀 Why Choose BookWave?</h2>
-    <div class="cards">
-      <div class="card">✅ Zero Hassle Listing</div>
-      <div class="card">📦 Books Priced at Just 40% of MRP</div>
-      <div class="card">💰 90% Earnings to Sellers</div>
-      <div class="card">⚡ Instant Purchase & Secure Payments</div>
-    </div>
-  </section>
-
-  <section id="browse" class="section-container">
-    <h2>📖 Popular Listings</h2>
-    <div class="book-grid">
-      <div class="book">Harry Potter - ₹350 (MRP ₹875)</div>
-      <div class="book">NCERT Physics Class 11 - ₹180 (MRP ₹450)</div>
-      <div class="book">Diary of a Wimpy Kid - ₹200 (MRP ₹500)</div>
-      <div class="book">Rich Dad Poor Dad - ₹250 (MRP ₹625)</div>
-    </div>
-  </section>
-
-  <section id="sell" class="section-container">
-    <h2>🛒 Ready to Sell?</h2>
-    <p>List your books at 40% of their MRP. We ensure fast sales and you get 90% of the price!</p>
-    <form class="sell-form" onsubmit="handleListing(event)">
-      <input type="text" id="bookTitle" placeholder="Book Title" required />
-      <input type="number" id="mrp" placeholder="MRP in ₹" required />
-      <button type="submit">Submit Listing</button>
+  <section id="upload-section">
+    <h2>📤 Upload Your Book</h2>
+    <form id="uploadForm">
+      <input type="text" id="bookName" placeholder="Book Name" required />
+      <input type="text" id="bookLocation" placeholder="City / Location" required />
+      <select id="bookSubject" required>
+        <option value="">Select Subject</option>
+        <option value="NEET">NEET</option>
+        <option value="JEE">JEE</option>
+      </select>
+      <input type="file" id="bookImage" accept="image/*" required />
+      <button type="submit">Upload</button>
     </form>
-    <div id="listing-output"></div>
   </section>
 
-  <footer class="footer">
-    <p>&copy; 2025 BookWave. All rights reserved.</p>
+  <section id="book-market">
+    <h2>📚 Available Books</h2>
+
+    <div class="filters">
+      <input type="text" id="searchLocation" placeholder="Search by city or area" />
+      <select id="filterSubject">
+        <option value="all">All Subjects</option>
+        <option value="NEET">NEET</option>
+        <option value="JEE">JEE</option>
+      </select>
+    </div>
+
+    <div id="bookList" class="book-list"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 BookWave. Built with ❤️ for NEET & JEE aspirants.</p>
   </footer>
 
   <script src="script.js"></script>
