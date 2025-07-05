@@ -95,3 +95,9 @@ function applyFilters() {
   displayBooks(filtered);
 }
 
+function scrollToPartners() {
+  const element = document.getElementById("partners");
+  if (element) element.scrollIntoView({ behavior: "smooth" });
+}
+
+
