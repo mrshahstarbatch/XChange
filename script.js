@@ -1,26 +1,74 @@
-// script.js
+const uploadForm = document.getElementById("uploadForm");
+const bookList = document.getElementById("bookList");
 
-console.log("BookWave is live!");
+uploadForm.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-function showComingSoon(message) {
-  alert(message || "This feature is coming soon!");
-}
+  const bookName = document.getElementById("bookName").value;
+  const location = document.getElementById("bookLocation").value;
+  const subject = document.getElementById("bookSubject").value;
+  const file = document.getElementById("bookImage").files[0];
 
-function handleListing(event) {
-  event.preventDefault();
-  const title = document.getElementById("bookTitle").value;
-  const mrp = parseFloat(document.getElementById("mrp").value);
+  const reader = new FileReader();
+  reader.onloadend = function () {
+    const book = {
+      name: bookName,
+      location: location,
+      subject: subject,
+      image: reader.result,
+    };
 
-  if (!title || isNaN(mrp) || mrp <= 0) {
-    alert("Please enter valid details.");
-    return;
+    const books = JSON.parse(localStorage.getItem("books") || "[]");
+    books.push(book);
+    localStorage.setItem("books", JSON.stringify(books));
+
+    uploadForm.reset();
+    loadBooks();
+  };
+
+  if (file) {
+    reader.readAsDataURL(file);
   }
+});
 
-  const price = (0.4 * mrp).toFixed(2);
-  const youGet = (0.9 * price).toFixed(2);
+function displayBook(book) {
+  const card = document.createElement("div");
+  card.className = "book-card";
 
-  const output = `📚 Listing created for "${title}" at ₹${price}. You will earn ₹${youGet} after 10% platform fee.`;
-  document.getElementById("listing-output").innerText = output;
-  document.getElementById("bookTitle").value = "";
-  document.getElementById("mrp").value = "";
+  card.innerHTML = `
+    <img src="${book.image}" alt="Book Image" />
+    <h3>${book.name}</h3>
+    <p><strong>Subject:</strong> ${book.subject}</p>
+    <p><strong>Location:</strong> ${book.location}</p>
+  `;
+
+  bookList.appendChild(card);
 }
+
+function loadBooks() {
+  const books = JSON.parse(localStorage.getItem("books") || "[]");
+  window.allBooks = books; // Save for filtering
+  applyFilters();
+}
+
+function applyFilters() {
+  const locationQuery = document.getElementById("searchLocation").value.toLowerCase();
+  const subjectFilter = document.getElementById("filterSubject").value;
+
+  const filteredBooks = window.allBooks.filter(book => {
+    const matchesLocation = book.location.toLowerCase().includes(locationQuery);
+    const matchesSubject = subjectFilter === "all" || book.subject === subjectFilter;
+    return matchesLocation && matchesSubject;
+  });
+
+  displayBooks(filteredBooks);
+}
+
+function displayBooks(bookArray) {
+  bookList.innerHTML = ""; // Clear current list
+  bookArray.forEach(displayBook);
+}
+
+window.addEventListener("load", loadBooks);
+document.getElementById("searchLocation").addEventListener("input", applyFilters);
+document.getElementById("filterSubject").addEventListener("change", applyFilters);
