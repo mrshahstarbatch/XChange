@@ -120,3 +120,33 @@ footer {
   padding: 20px;
   text-align: center;
 }
+
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  background: #f3f4f6;
+  border-radius: 10px;
+  margin: 30px auto;
+  max-width: 900px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+#filters input,
+#filters select {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  min-width: 200px;
+  transition: 0.3s ease;
+}
+
+#filters input:focus,
+#filters select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0,123,255,0.2);
+}
+
